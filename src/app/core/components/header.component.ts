@@ -18,8 +18,9 @@ export class HeaderComponent {
     ) { }
 
     navigateTo(route: string) {
-        if (!route.includes(this.router.url)) {
-            this.router.navigate([route])
+        const hasCurrentGame = !!this.gameHistoryService.getCurrentGame();
+        if ((!route.includes('home') && hasCurrentGame) || (route.includes('home') && !hasCurrentGame)) {
+            this.router.navigate([route]);
         }
     }
 
