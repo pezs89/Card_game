@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CardGame } from '../models/card-game';
 import { Card } from '../models/card';
 import { CARD_TYPES } from '../constants/card-types';
+import { Highscore } from '../models/highscore';
 import { Urls } from '../enums/urls';
 import { v1 } from 'uuid';
 import shuffle from 'shuffle.ts';
@@ -37,6 +38,10 @@ export class GameHistoryService {
         this.router.navigate(['/card-game']);
     }
 
+    private deleteCurrentGame() {
+        localStorage.removeItem('currentGame');
+    }
+
     getCurrentGame(): CardGame {
         return this.getCurrentGameHistory();
     }
@@ -51,5 +56,32 @@ export class GameHistoryService {
 
     setCurrentGameHistory(game: CardGame) {
         localStorage.setItem('currentGame', JSON.stringify(game));
+    }
+
+    getHighscores(): Highscore[] {
+        const highscores = localStorage.getItem('highscores');
+        if (highscores) {
+            return JSON.parse(highscores);
+        }
+        return undefined;
+    }
+
+    createNewHighscore(highscores: Highscore[] = [], newHighscore: Highscore): Highscore[] {
+        const newHighscores = [...highscores];
+        newHighscores.push(newHighscore);
+        newHighscores.sort((a, b) => a.steps - b.steps);
+        return newHighscores.reduce((newHighscoesArray: Highscore[], highscore: Highscore, index) => {
+            if (index < 3) {
+                newHighscoesArray.push(highscore)
+            }
+            return newHighscoesArray;
+        }, [])
+    }
+
+    setNewHighscore(newHighscore: Highscore) {
+        this.deleteCurrentGame();
+        const highscores = this.getHighscores();
+        const newHighscores = this.createNewHighscore(highscores, newHighscore);
+        localStorage.setItem('highscores', JSON.stringify(newHighscores));
     }
 }
