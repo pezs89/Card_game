@@ -1,0 +1,9 @@
+<div class="start-game" [ngClass]="{'start-game--row': rowAlignment}">
+    <select class="start-game__item start-game__select" [ngClass]="{'start-game__item--row': rowAlignment}"
+        #deckSizeSelector>
+        <option *ngFor="let deckSize of deckSizes">{{deckSize}}</option>
+    </select>
+    <button class="start-game__item start-game__button" [ngClass]="{'start-game__item--row': rowAlignment}" (click)="start(deckSizeSelector.value)">
+        Start new game
+    </button>
+</div>

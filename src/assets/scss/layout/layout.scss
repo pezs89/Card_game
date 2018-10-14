@@ -1,0 +1,14 @@
+html {
+  height: 100vh;
+  overflow: auto;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: $font-size;
+  margin: 0;
+  height: 100%;
+  background: lightgray url('/assets/images/supercharge-logo.svg') no-repeat fixed center;
+  background-size: contain;
+}

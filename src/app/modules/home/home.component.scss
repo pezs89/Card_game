@@ -1,0 +1,23 @@
+@import '../../../assets/scss/mixins/mixins.scss';
+.home {
+  @include flex(flex, center, center, column);
+  @include padding(10%, true);
+  &__intro {
+    padding: 10% 0;
+  }
+  &__text {
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    font-weight: 400;
+    &--primary {
+      font-size: 40px;
+    }
+    &--secondary {
+      font-size: 18px;
+    }
+  }
+  &__game-start {
+    @include flex(flex, center, center, column);
+  }
+}

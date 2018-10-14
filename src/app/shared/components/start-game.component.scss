@@ -1,0 +1,21 @@
+@import '../../../assets/scss/mixins/mixins.scss';
+.start-game {
+  @include flex(flex, center, initial, column);
+  &--row {
+    @include flex(flex, center, initial, row);
+  }
+  &__item {
+    height: 40px;
+    margin: 10px 0;
+    border-radius: 3px;
+    &--row {
+      margin: 0 5px;
+    }
+  }
+  &__button {
+    width: 180px;
+  }
+  &__select {
+    width: 120px;
+  }
+}

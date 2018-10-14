@@ -1,0 +1,33 @@
+@import '../../../assets/scss/main.scss';
+.header {
+  width: calc(100% - 20px);
+  height: 60px;
+  display: flex;
+  background-color: black;
+  color: white;
+  padding: 0 10px;
+  &__logo,
+  &__highscores {
+    width: 30%;
+    padding: 0 5px;
+    cursor: pointer;
+    @include flex(flex, center, flex-start);
+    &--right {
+      @include flex(flex, center, flex-end);
+    }
+    @media (max-width: 612px) {
+      width: calc(50% - 10px);
+    }
+  }
+  &__settings {
+    width: 40%;
+    @include flex(flex, center, center);
+  }
+  &__text {
+    margin: 0 0 0 10px;
+    text-transform: uppercase;
+    &--right {
+      margin: 0 10px 0 0;
+    }
+  }
+}

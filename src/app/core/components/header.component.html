@@ -1,0 +1,16 @@
+<header class="header">
+    <div class="header__logo" (click)="navigateTo('/home')">
+        <icon-component [iconPath]="'assets/images/supercharge-logo.svg'"></icon-component>
+        <h2 class="header__text">
+            Memory game
+        </h2>
+    </div>
+    <div class="header__settings" notVisibleOnMobile>
+        <start-game *ngIf="isStartGameVisible" [rowAlignment]="true" (startNewGame)="startNewGame($event)"></start-game>
+    </div>
+    <div class="header__highscores header__highscores--right">
+        <h2 class="header__text header__text--right" (click)="navigateTo('/highscores')">
+            Highscores
+        </h2>
+    </div>
+</header>
