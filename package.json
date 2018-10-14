@@ -1,0 +1,62 @@
+{
+  "name": "supercharge_card_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline --progress --hot --config config/webpack.dev.js",
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pezs89/Card_game.git"
+  },
+  "author": "Zsolt Peter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pezs89/Card_game/issues"
+  },
+  "homepage": "https://github.com/pezs89/Card_game#readme",
+  "dependencies": {
+    "@angular/animations": "^6.1.9",
+    "@angular/cdk": "^6.4.7",
+    "@angular/common": "^6.1.9",
+    "@angular/compiler": "^6.1.9",
+    "@angular/core": "^6.1.9",
+    "@angular/forms": "^6.1.9",
+    "@angular/http": "^6.1.9",
+    "@angular/platform-browser": "^6.1.9",
+    "@angular/platform-browser-dynamic": "^6.1.9",
+    "@angular/router": "^6.1.9",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.3.3",
+    "save-dev": "^2.0.0",
+    "zone.js": "^0.8.26"
+  },
+  "devDependencies": {
+    "@types/node": "^10.11.3",
+    "@types/uuid": "^3.4.4",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^5.2.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
+    "raw-loader": "^0.5.1",
+    "resolve-url-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "shuffle.ts": "^1.0.1",
+    "style-loader": "^0.23.0",
+    "typescript": "^3.1.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "uuid": "^3.3.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
+  }
+}
