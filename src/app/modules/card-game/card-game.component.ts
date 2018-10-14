@@ -1,26 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardGame } from 'src/app/core/models/card-game';
 import { CardGameService } from './services/card-game.service';
+import { GameHistoryService } from '../../core/services/game-history.service';
 import { Card } from 'src/app/core/models/card';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
     templateUrl: './card-game.component.html',
     styleUrls: ['./card-game.component.scss']
 })
 
-export class CardGameComponent implements OnInit {
+export class CardGameComponent implements OnInit, OnDestroy {
     cardGame: CardGame;
     private clickedCards: Card[] = [];
+    private newGameSubscription: Subscription;
 
     constructor(
+        private router: Router,
         private cardGameService: CardGameService,
-        private router: Router
+        private gameHistoryService: GameHistoryService
     ) { }
 
     ngOnInit() {
-        this.cardGame = this.cardGameService.getGameData();
-        this.clickedCards = this.cardGame.cards.filter((card: Card) => card.isFlipped && !card.hasPairFound);
+        this.newGameSubscription = this.gameHistoryService.newGameObservable.subscribe((newGame: CardGame) => {
+            this.cardGame = newGame;
+            this.clickedCards = newGame.cards.filter((card: Card) => card.isFlipped && !card.hasPairFound);
+        })
     }
 
     onCardClicked(card: Card) {
@@ -75,5 +81,9 @@ export class CardGameComponent implements OnInit {
 
     isGameFinished(): boolean {
         return this.cardGame.cards.filter((card: Card) => card.hasPairFound).length === this.cardGame.cards.length;
+    }
+
+    ngOnDestroy() {
+        this.newGameSubscription.unsubscribe();
     }
 }

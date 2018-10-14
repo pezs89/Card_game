@@ -7,9 +7,13 @@ import { Highscore } from '../models/highscore';
 import { Urls } from '../enums/urls';
 import { v1 } from 'uuid';
 import shuffle from 'shuffle.ts';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class GameHistoryService {
+    private newGame: BehaviorSubject<CardGame> = new BehaviorSubject(null);
+    newGameObservable: Observable<CardGame> = this.newGame.asObservable();
+    
     constructor(
         private router: Router
     ) { }
@@ -35,6 +39,7 @@ export class GameHistoryService {
             cards: this.initializeGame(deckSize)
         }
         this.setCurrentGameHistory(currentGame);
+        this.newGame.next(currentGame);
         this.router.navigate(['/card-game']);
     }
 
@@ -49,7 +54,9 @@ export class GameHistoryService {
     getCurrentGameHistory(): CardGame {
         const currentGameJson = localStorage.getItem('currentGame');
         if (currentGameJson) {
-            return JSON.parse(currentGameJson);
+            const parsedCurrentGame = JSON.parse(currentGameJson);
+            this.newGame.next(parsedCurrentGame);
+            return parsedCurrentGame;
         }
         return undefined;
     }

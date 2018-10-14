@@ -1,16 +1,18 @@
 <div class="game-container">
-    <card *ngFor="let card of cardGame.cards" [card]="card" (onCardClick)="onCardClicked($event)">
-        <div class="card__front" [ngClass]="{'card__back--flip': !card.isFlipped}" *ngIf="!card.isFlipped"></div>
-        <div class="card__front" *ngIf="card.isFlipped && !card.hasPairFound"></div>
-        <div class="card__back" [ngClass]="{'card__back--flip': card.isFlipped, 'card__back--has-pair': card.hasPairFound}"
-            *ngIf="card.isFlipped || card.hasPairFound" [ngStyle]="{'background-image': 'url(' + card.imageUrl + ')'}"></div>
-    </card>
-    <div *ngIf="isGameFinished()" class="game-container__highscores">
-        <h1 class="game-container__text">
-            The game is finished, you can go to the highscores or start a new game
-        </h1>
-        <button class="secondary game-container__button" (click)="navigateTo('/highscores')">
-            Go to highscores
-        </button>
-    </div>
+    <ng-container *ngIf="cardGame">
+        <card *ngFor="let card of cardGame.cards" [card]="card" (onCardClick)="onCardClicked($event)">
+            <div class="card__front" [ngClass]="{'card__back--flip': !card.isFlipped}" *ngIf="!card.isFlipped"></div>
+            <div class="card__front" *ngIf="card.isFlipped && !card.hasPairFound"></div>
+            <div class="card__back" [ngClass]="{'card__back--flip': card.isFlipped, 'card__back--has-pair': card.hasPairFound}"
+                *ngIf="card.isFlipped || card.hasPairFound" [ngStyle]="{'background-image': 'url(' + card.imageUrl + ')'}"></div>
+        </card>
+        <div *ngIf="isGameFinished()" class="game-container__highscores">
+            <h1 class="game-container__text">
+                The game is finished, you can go to the highscores or start a new game
+            </h1>
+            <button class="secondary game-container__button" (click)="navigateTo('/highscores')">
+                Go to highscores
+            </button>
+        </div>
+    </ng-container>
 </div>
