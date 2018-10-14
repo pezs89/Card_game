@@ -1,0 +1,31 @@
+@import '../../../assets/scss/mixins/mixins.scss';
+.highscores {
+  @include flex(flex, center, center, column);
+  padding: 20%;
+  &__heading {
+    h1 {
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 36px;
+    }
+  }
+  &__list {
+    list-style: none;
+    @include padding(0);
+    width: 100%;
+    @include flex(flex, center, center, column);
+  }
+  &__list-item {
+    padding: 20px 0;
+    @include flex(flex, center, center, column);
+  }
+  &__list-item-title {
+    color: grey;
+    @include padding(5);
+  }
+  &__list-item-value {
+    font-size: 30px;
+    font-weight: 400;
+    @include padding(5);
+  }
+}

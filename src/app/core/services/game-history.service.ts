@@ -69,13 +69,17 @@ export class GameHistoryService {
     createNewHighscore(highscores: Highscore[] = [], newHighscore: Highscore): Highscore[] {
         const newHighscores = [...highscores];
         newHighscores.push(newHighscore);
-        newHighscores.sort((a, b) => a.steps - b.steps);
-        return newHighscores.reduce((newHighscoesArray: Highscore[], highscore: Highscore, index) => {
-            if (index < 3) {
-                newHighscoesArray.push(highscore)
-            }
-            return newHighscoesArray;
-        }, [])
+        if (highscores.length === 1) {
+            return newHighscores;
+        } else {
+            newHighscores.sort((a, b) => a.steps - b.steps);
+            return newHighscores.reduce((newHighscoesArray: Highscore[], highscore: Highscore, index) => {
+                if (index < 3) {
+                    newHighscoesArray.push(highscore)
+                }
+                return newHighscoesArray;
+            }, []);
+        }
     }
 
     setNewHighscore(newHighscore: Highscore) {

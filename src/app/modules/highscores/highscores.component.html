@@ -1,3 +1,24 @@
 <div class="highscores">
-   highscores
+    <div class="highscores__heading">
+        <h1>Highscrores</h1>
+    </div>
+    <ul class="highscores__list">
+        <li *ngFor="let highscore of highscores; let index = index" [ngSwitch]="index" class="highscores__list-item">
+            <div class="highscores__list-item-title" *ngSwitchCase="0">
+                Best
+            </div>
+            <div class="highscores__list-item-title" *ngSwitchCase="1">
+                Second
+            </div>
+            <div class="highscores__list-item-title" *ngSwitchCase="2">
+                Third
+            </div>
+            <div class="highscores__list-item-value">
+                {{highscore.steps}}
+            </div>
+        </li>
+    </ul>
+    <div class="highscores__buttons">
+        <button *ngIf="hasActiveGame" class="secondary" (click)="navigateTo('/card-game')">Back to game</button>
+    </div>
 </div>
