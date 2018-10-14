@@ -33,7 +33,23 @@ export class GameHistoryService {
             steps: 0,
             cards: this.initializeGame(deckSize)
         }
-        console.log(currentGame);
+        this.setCurrentGameHistory(currentGame);
         this.router.navigate(['/card-game']);
+    }
+
+    getCurrentGame(): CardGame {
+        return this.getCurrentGameHistory();
+    }
+
+    getCurrentGameHistory(): CardGame {
+        const currentGameJson = localStorage.getItem('currentGame');
+        if (currentGameJson) {
+            return JSON.parse(currentGameJson);
+        }
+        return undefined;
+    }
+
+    setCurrentGameHistory(game: CardGame) {
+        localStorage.setItem('currentGame', JSON.stringify(game));
     }
 }

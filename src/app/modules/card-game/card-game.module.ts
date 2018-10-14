@@ -1,7 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CardGameComponent } from "./card-game.component";
+import { CardComponent } from "./components/card.component";
 import { CardGameRoutingModule } from "./card-game.routing";
+import { CardGameService } from "./services/card-game.service";
+
 
 @NgModule({
     imports: [
@@ -10,8 +13,10 @@ import { CardGameRoutingModule } from "./card-game.routing";
     ],
     declarations: [
         CardGameComponent,
+        CardComponent
     ],
     providers: [
+        CardGameService
     ]
 })
 

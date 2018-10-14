@@ -1,2 +1,8 @@
 <div class="game-container">
+    <card *ngFor="let card of cardGame.cards" [card]="card" (onCardClick)="onCardClicked($event)">
+        <div class="card__front" *ngIf="!card.isFlipped"></div>
+        <div class="card__back"*ngIf="card.isFlipped"></div>
+        <div class="card__back" [ngClass]="{'card__back--has-pair': card.hasPairFound}"
+            *ngIf="card.isFlipped || card.hasPairFound" [ngStyle]="{'background-image': 'url(' + card.imageUrl + ')'}"></div>
+    </card>
 </div>

@@ -1,0 +1,19 @@
+@import '../../../assets/scss/mixins/mixins.scss';
+.game-container {
+  height: 100%;
+  padding: 20px;
+  @include flex(flex, initial, center, row);
+  flex-wrap: wrap;
+  &__highscores {
+    @include flex(flex, center, center, column);
+    @include padding(50);
+  }
+  &__text {
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  &__button {
+    height: 40px;
+  }
+}
